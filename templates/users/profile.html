@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white text-center">
+                    <h5 class="mb-0">My Profile</h5>
+                </div>
+                <div class="card-body text-center py-4">
+                    
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Picture" class="rounded-circle mb-3" style="width: 100px; height: 100px;">
+                    
+                    <h4 class="card-title" id="profileName">Apple Store User</h4>
+                    <p class="text-muted" id="profileRole">Role: Customer</p>
+                    
+                    <hr class="my-4">
+                    
+                    
+                    <a href="{% url 'store' %}" class="btn btn-outline-dark mx-1">Go to Store</a>
+                    <button class="btn btn-danger mx-1" onclick="logoutUser()">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const token = localStorage.getItem("access_token");
+        
+        if (!token) {
+            
+            window.location.href = "/login/";
+        }
+    });
+</script>
+{% endblock %}

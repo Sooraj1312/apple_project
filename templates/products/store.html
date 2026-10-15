@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% block banner_section %}
+    {% if banners %}
+        <div id="storeBannerCarousel" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for banner in banners %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ banner.image.url }}" class="d-block w-100" alt="{{ banner.title }}" style="height: 400px; object-fit: cover; filter: brightness(70%);">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="fw-bold text-white">{{ banner.title }}</h1>
+                        {% if banner.content %}
+                            <p class="fs-5">{{ banner.content }}</p>
+                        {% endif %}
+                        {% if banner.link %}
+                            <a href="{{ banner.link }}" class="btn btn-warning btn-lg mt-3">Know More</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#storeBannerCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#storeBannerCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-center my-4">Our Products</h2>
+    <div class="row">
+        {% for item in products %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <a href="{% url 'product_detail' item.id %}">
+                        <img src="{{ item.image.url }}" class="card-img-top p-3" alt="{{ item.name }}" style="height: 250px; object-fit: contain;">
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p>No products available right now!</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

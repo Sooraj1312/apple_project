@@ -4,6 +4,7 @@ from rest_framework import status
 from .serializers import RegisterSerializer, LoginSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
+from django.shortcuts import render
 
 
 # Generate JWT Token
@@ -68,4 +69,11 @@ class TestProtectedView(APIView):
     def get(self, request):
         return Response({"message": "You are authenticated"})
 
+def register(request):
+    return render(request, "users/register.html")
 
+def login(request):
+    return render(request,"users/login.html")
+
+def profile(request):
+    return render(request, "users/profile.html")

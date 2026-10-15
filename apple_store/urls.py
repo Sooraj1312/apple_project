@@ -16,10 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from products.views import category_products, store_page, product_detail
+from users.views import login, profile, register
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='welcome.html'), name='home'),
     path('admin/', admin.site.urls),
+    path('category/<int:cat_id>/', category_products, name='category_products'),
+    path('product/<int:product_id>/', product_detail, name='product_detail'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
+    path('profile/', profile, name='profile_page'),
+    path('store/', store_page, name='store'),
     path('api/users/', include("users.urls")),
     path('api/products/', include("products.urls")),
-    path('api/banners/', include("banners.urls"))
+    path('api/banners/', include("banners.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

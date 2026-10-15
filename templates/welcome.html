@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Store</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <style>
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
+        .hero-section {
+            height: 100vh; 
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.apple.com/in/homepage/images/diwali-2026/hero/diwali_hero__eg3tn83tm1si_large.jpg') no-repeat center center/cover;
+            background-color: #121212; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #d1d1d1;
+        }
+
+        .shop-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        
+        .shop-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+            background-color: #f8f9fa;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="hero-section">
+        <div class="container">
+            
+            <h1 class="hero-title">Welcome Joy</h1>
+            <p class="hero-subtitle">Celebrate the season with our premium festive offers.</p>
+            
+            
+            <a href="{% url 'store' %}" class="btn btn-light btn-lg shop-btn text-dark fw-bold">
+                Enter Store
+            </a>
+        </div>
+    </div>
+
+   
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
